@@ -1,5 +1,6 @@
 package ru.mikhail.oauth2server;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,10 +9,19 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import ru.mikhail.oauth2server.service.PersonService;
+import ru.mikhail.oauth2server.service.TokenService;
 
 @Configuration
 @Order(1)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    @Autowired
+    CustomAuthenticationProvider authenticationProvider;
+    @Autowired
+    PersonService p_service;
+    @Autowired
+    TokenService t_service;
+
     @Value("${user.oauth.user.username}")
     private String username;
     @Value("${user.oauth.user.password}")
@@ -30,10 +40,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser(username)
-                .password(passwordEncoder().encode(password))
-                .roles("USER");
+        auth.authenticationProvider(authenticationProvider);
+//        auth.inMemoryAuthentication()
+//                .withUser(username)
+//                .password(passwordEncoder().encode(password))
+//                .roles("USER");
     }
 
     @Bean
