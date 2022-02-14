@@ -15,16 +15,18 @@ public class TokenRepository {
     @Resource
     private SessionFactory sessionFactory;
 
-    public MyToken getElement(Person p) {
+    public MyToken getElement(Person p, String token_type) {
         Session session = sessionFactory.getCurrentSession();
-        Query q = session.createQuery("from MyToken where userId=:userId")
-                .setParameter("userId", p.getId());
+        Query q = session.createQuery("from MyToken where userId=:userId and token_type=:type")
+                .setParameter("userId", p.getId())
+                .setParameter("type", token_type);
         return (MyToken) q.list().get(0);
     }
-    public MyToken getElement(int userId) {
+    public MyToken getElement(int userId, String token_type) {
         Session session = sessionFactory.getCurrentSession();
-        Query q = session.createQuery("from MyToken where userId=:userId")
-                .setParameter("userId", userId);
+        Query q = session.createQuery("from MyToken where userId=:userId and token_type=:type")
+                .setParameter("userId", userId)
+                .setParameter("type", token_type);
         return (MyToken) q.list().get(0);
     }
 
@@ -48,5 +50,12 @@ public class TokenRepository {
                 "where userId=:userId")
                 .setParameter("userId", userId)
                 .executeUpdate();
+    }
+
+    public MyToken getElement(String token) {
+        Session session = sessionFactory.getCurrentSession();
+        Query q = session.createQuery("from MyToken where token=:token")
+                .setParameter("token", token);
+        return (MyToken) q.list().get(0);
     }
 }

@@ -11,8 +11,8 @@ public class TokenService {
     @Resource
     TokenRepository repository;
 
-    public MyToken getToken(int userId) {
-        return repository.getElement(userId);
+    public MyToken getToken(int userId, String token_type) {
+        return repository.getElement(userId, token_type);
     }
 
     public void addToken(MyToken token) {
@@ -21,5 +21,9 @@ public class TokenService {
 
     public void deleteToken(int userId) {
         repository.deleteElement(userId);
+    }
+
+    public MyToken getToken(String token) {
+        return repository.getElement(token);
     }
 }

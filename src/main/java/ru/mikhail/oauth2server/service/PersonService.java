@@ -29,4 +29,8 @@ public class PersonService {
     public void deletePerson(String name, String password) {
         repository.deleteElement(repository.getElement(name, password));
     }
+
+    public Person getPerson(int id) {
+        return repository.getElement(id);
+    }
 }

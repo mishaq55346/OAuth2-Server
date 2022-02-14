@@ -14,6 +14,7 @@ public class MyToken implements Serializable {
     private String token;
     private Date expiresAt;
     private int userId;
+    private String token_type;
 
     public int getId() {
         return id;
@@ -45,5 +46,13 @@ public class MyToken implements Serializable {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getToken_type() {
+        return token_type;
+    }
+
+    public void setToken_type(String token_type) {
+        this.token_type = token_type;
     }
 }

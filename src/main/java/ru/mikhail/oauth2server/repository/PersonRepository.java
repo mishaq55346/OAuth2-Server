@@ -44,4 +44,8 @@ public class PersonRepository {
                 .setParameter("password", person.getPassword())
                 .executeUpdate();
     }
+
+    public Person getElement(int id) {
+        return sessionFactory.getCurrentSession().get(Person.class, id);
+    }
 }

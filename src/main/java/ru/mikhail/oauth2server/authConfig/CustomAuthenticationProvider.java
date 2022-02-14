@@ -1,4 +1,4 @@
-package ru.mikhail.oauth2server;
+package ru.mikhail.oauth2server.authConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
