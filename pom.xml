@@ -28,10 +28,14 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>2.5.1.RELEASE</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security.oauth</groupId>-->
+<!--            <artifactId>spring-security-oauth2</artifactId>-->
+<!--            <version>2.5.1.RELEASE</version>-->
+<!--        </dependency>-->
 
 
 
@@ -69,18 +73,14 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.25</version>
         </dependency>
-        <!-- for token generation -->
+        <!-- for token maintaining -->
+        <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.9.1</version>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.18.3</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-jwt -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-jwt</artifactId>
-            <version>1.1.1.RELEASE</version>
-        </dependency>
+
 
         <!-- lombok for code generation -->
         <dependency>

@@ -45,7 +45,9 @@ public class PersonRepository {
                 .executeUpdate();
     }
 
-    public Person getElement(int id) {
-        return sessionFactory.getCurrentSession().get(Person.class, id);
+    public List<Person> getAll() {
+        Session session = sessionFactory.getCurrentSession();
+        Query q = session.createQuery("from Person");
+        return q.list();
     }
 }

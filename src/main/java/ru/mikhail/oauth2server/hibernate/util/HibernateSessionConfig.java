@@ -8,7 +8,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import ru.mikhail.oauth2server.model.MyToken;
 import ru.mikhail.oauth2server.model.Person;
 
 import javax.sql.DataSource;
@@ -46,7 +45,7 @@ public class HibernateSessionConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setAnnotatedClasses(Person.class, MyToken.class);
+        sessionFactory.setAnnotatedClasses(Person.class);
         sessionFactory.setPackagesToScan("ru.mikhail.oauth2server.model");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
