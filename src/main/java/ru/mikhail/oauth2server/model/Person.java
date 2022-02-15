@@ -1,6 +1,8 @@
 package ru.mikhail.oauth2server.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "users")
 public class Person implements Serializable {
     private static final long serialVersionUID = -1;
@@ -21,6 +24,14 @@ public class Person implements Serializable {
     private boolean enabled;
     private String roles = "";
     private String permissions = "";
+
+    public Person(String name, String password, boolean enabled, String roles, String permissions) {
+        this.name = name;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
+        this.permissions = permissions;
+    }
 
     public String getName() {
         return name;

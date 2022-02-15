@@ -4,10 +4,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
+import ru.mikhail.oauth2server.model.DisplayablePerson;
 import ru.mikhail.oauth2server.model.Person;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -45,9 +47,19 @@ public class PersonRepository {
                 .executeUpdate();
     }
 
-    public List<Person> getAll() {
+    public List<DisplayablePerson> getAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query q = session.createQuery("from Person");
-        return q.list();
+        Query q = session.createQuery("SELECT p.name,p.enabled, p.roles, p.permissions  from Person p");
+
+        List<Object[]> rows = q.list();
+        List<DisplayablePerson> list = new ArrayList<>();
+        for (Object[] objects : rows)
+            list.add(new DisplayablePerson(
+                    (String)objects[0],
+                    (boolean)objects[1],
+                    (String)objects[2],
+                    (String)objects[3]
+            ));
+        return list;
     }
 }

@@ -1,6 +1,7 @@
 package ru.mikhail.oauth2server.service;
 
 import org.springframework.stereotype.Service;
+import ru.mikhail.oauth2server.model.DisplayablePerson;
 import ru.mikhail.oauth2server.model.Person;
 import ru.mikhail.oauth2server.repository.PersonRepository;
 
@@ -29,7 +30,7 @@ public class PersonService {
     public void deletePerson(String name, String password) {
         repository.deleteElement(repository.getElement(name, password));
     }
-    public List<Person> getAll(){
+    public List<DisplayablePerson> getAll(){
         return repository.getAll();
     }
 
